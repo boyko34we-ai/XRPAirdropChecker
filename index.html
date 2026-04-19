@@ -1,1 +1,1114 @@
-x
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+<title>XRP Airdrop Checker — Check Your XRPL Wallet for Unclaimed Airdrops 2026</title>
+<meta name="description" content="Check your XRP Ledger wallet address for unclaimed and upcoming airdrops. Scan eligibility across NIGHT (Midnight), Flare FLR, Evernode EVRS, XAO DAO points, RLUSD drops, and more. Paste your XRPL address — instant eligibility scan. Non-custodial, no wallet connection required."/>
+<meta name="keywords" content="XRP airdrop checker, XRPL airdrop, check XRP wallet airdrop, XRP airdrop eligibility, NIGHT airdrop XRP, Flare airdrop XRP, FLR airdrop, Evernode airdrop, XRP unclaimed tokens, XRPL snapshot eligibility, XRP free tokens, XRP airdrop 2026, how to claim XRP airdrop, XRP airdrop scan, XRPL trust line airdrop"/>
+<link rel="canonical" href="https://xrpairdrop.vercel.app/"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="XRP Airdrop Checker — Scan Your XRPL Wallet"/>
+<meta property="og:description" content="Paste your XRPL address to scan for unclaimed airdrops: NIGHT, FLR, EVRS, XAO DAO and upcoming drops. Instant results. No wallet connection needed."/>
+<meta property="og:url" content="https://xrpairdrop.vercel.app/"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="XRP Airdrop Checker"/>
+<meta name="twitter:description" content="Scan your XRPL wallet for unclaimed airdrops and upcoming drops. Free. No wallet connection."/>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"XRP Airdrop Checker","url":"https://xrpairdrop.io","applicationCategory":"FinanceApplication","operatingSystem":"All","description":"XRP Airdrop Checker scans any XRP Ledger wallet address for airdrop eligibility across past, present, and upcoming drops. Covers NIGHT (Midnight, 1.2B tokens to XRP holders), Flare FLR/SGB, Evernode EVRS, XAO DAO governance points, RLUSD distributions, and newly launched wXRP ecosystem drops. No wallet connection required — paste your address for instant scan.","featureList":["Scan XRPL wallet address for airdrops","Check NIGHT token eligibility (Midnight)","Check Flare FLR/SGB unclaimed","Check Evernode EVRS eligibility","Check XAO DAO points balance","Check upcoming drops","Trust line checker","Snapshot history viewer"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I check if my XRP wallet is eligible for airdrops?","acceptedAnswer":{"@type":"Answer","text":"Paste your XRPL wallet address (starting with 'r') into the XRP Airdrop Checker and click Scan. The tool checks your address against snapshot data from known airdrop programs including NIGHT (Midnight), Flare FLR/SGB, Evernode EVRS, XAO DAO, and RLUSD distributions. No wallet connection or private key is required — read-only address scan only."}},
+{"@type":"Question","name":"What was the NIGHT token airdrop for XRP holders?","acceptedAnswer":{"@type":"Answer","text":"Midnight (a data protection blockchain by Cardano) airdropped NIGHT tokens to XRP holders. The snapshot was taken June 11, 2025. XRP holders with at least $100 worth of XRP in a non-custodial wallet at snapshot time were eligible. XRP holders received 5% of 24 billion total NIGHT supply (1.2 billion tokens). The 60-day claim window opened August 5, 2025."}},
+{"@type":"Question","name":"What is a Trust Line on XRPL and why do I need it for airdrops?","acceptedAnswer":{"@type":"Answer","text":"The XRP Ledger requires a manual opt-in called a Trust Line before you can receive any token other than native XRP. Unlike Ethereum where tokens can be sent to any address, XRPL requires you to explicitly trust a token issuer before receiving their tokens. To receive airdrop tokens, you must set up a Trust Line for the issuing project's token using a wallet like XUMM (Xaman) before the airdrop distribution date."}},
+{"@type":"Question","name":"Does holding XRP on an exchange qualify for airdrops?","acceptedAnswer":{"@type":"Answer","text":"Usually no. Most XRPL airdrops require holding XRP in a self-custody (non-custodial) wallet like XUMM (Xaman), Crossmark, or a Ledger hardware wallet. Exchange-held XRP is typically not eligible because the exchange holds the actual XRPL address, not you. Some major exchanges (Binance, Coinbase) do support selected airdrops, but self-custody wallets give you the best coverage."}}
+]}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23030D08'/%3E%3Crect x='6' y='14' width='20' height='4' rx='2' fill='none' stroke='%2300FFA3' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%2300FFA3'/%3E%3Cpath d='M6 8 L26 8 M6 24 L26 24' stroke='%2300FFA3' stroke-width='1' opacity='.35' stroke-dasharray='2 3'/%3E%3C/svg%3E"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:  #030D08;
+  --bg1: #061510;
+  --bg2: #0A1E15;
+  --bg3: #0F271A;
+  --s1:  #153323;
+
+  --gr:  #00FFA3;   /* neon scanner green */
+  --gr2: #00D988;
+  --gr3: #00B870;
+  --gr-a:rgba(0,255,163,.07);
+  --gr-b:rgba(0,255,163,.15);
+  --gr-c:rgba(0,255,163,.28);
+
+  --cy:  #00D4C8;   /* cyan accent */
+  --cy-a:rgba(0,212,200,.07);
+  --cy-b:rgba(0,212,200,.14);
+
+  --am:  #FFB800;   /* amber for warnings / pending */
+  --am-a:rgba(255,184,0,.08);
+  --am-b:rgba(255,184,0,.18);
+
+  --rd:  #FF4757;
+  --rd-a:rgba(255,71,87,.07);
+  --rd-b:rgba(255,71,87,.18);
+
+  --xb:  #3A9BDC;   /* XRP blue */
+  --xb-a:rgba(58,155,220,.07);
+  --xb-b:rgba(58,155,220,.15);
+
+  --wh:  #DCF7EC;
+  --tx2: #1E6040;
+  --tx3: #0A3020;
+  --line:rgba(0,255,163,.07);
+  --line2:rgba(0,255,163,.15);
+
+  --sans:'Chakra Petch',system-ui,sans-serif;
+  --mono:'JetBrains Mono','Menlo',monospace;
+
+  --nav-h:64px;--max:1200px;
+  --r:8px;--r2:13px;--r3:18px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--wh);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6}
+
+/* Scanner grid */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,255,163,.015) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,163,.015) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 0%,rgba(0,255,163,.07) 0%,transparent 55%),
+    radial-gradient(ellipse 40% 30% at 100% 100%,rgba(0,212,200,.04) 0%,transparent 55%);
+}
+
+.skip{position:absolute;top:-40px;left:12px;background:var(--gr);color:var(--bg);padding:7px 14px;border-radius:4px;font-size:.75rem;font-weight:700;z-index:9999;text-decoration:none}
+.skip:focus{top:8px}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:300;height:var(--nav-h);
+  background:rgba(3,13,8,.97);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{max-width:var(--max);margin:0 auto;height:100%;padding:0 36px;display:flex;align-items:center}
+.nav-brand{display:flex;align-items:center;gap:11px;text-decoration:none;margin-right:44px;flex-shrink:0}
+.ac-logo{
+  width:32px;height:32px;border-radius:7px;
+  background:var(--gr-a);border:1px solid var(--gr-b);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.7rem;font-weight:600;color:var(--gr);
+  flex-shrink:0;letter-spacing:.02em;
+  box-shadow:0 0 12px rgba(0,255,163,.1);
+}
+.brand-name{font-size:1rem;font-weight:700;color:var(--wh);letter-spacing:.02em}
+.brand-sub{font-family:var(--mono);font-size:.44rem;color:var(--tx3);letter-spacing:.07em;text-transform:uppercase;margin-top:1px}
+nav ul{display:flex;flex:1;list-style:none}
+nav ul li a{
+  font-size:.74rem;font-weight:500;color:var(--tx2);text-decoration:none;
+  padding:0 13px;height:var(--nav-h);display:flex;align-items:center;
+  letter-spacing:.04em;transition:color .15s;position:relative;
+}
+nav ul li a::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1.5px;background:var(--gr);transform:scaleX(0);transition:transform .2s;border-radius:2px 2px 0 0}
+nav ul li a:hover{color:var(--wh)}
+nav ul li a:hover::after,nav ul li a.active::after{transform:scaleX(1)}
+nav ul li a.active{color:var(--gr)}
+.nav-r{display:flex;align-items:center;gap:8px;margin-left:auto}
+.scan-chip{
+  font-family:var(--mono);font-size:.6rem;padding:5px 10px;
+  border:1px solid var(--gr-b);border-radius:4px;
+  background:var(--gr-a);color:var(--gr);
+  display:flex;align-items:center;gap:5px;letter-spacing:.06em;text-transform:uppercase;
+}
+.sc-dot{width:5px;height:5px;border-radius:50%;background:var(--gr);flex-shrink:0;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,255,163,.4)}50%{opacity:.4;box-shadow:0 0 0 4px transparent}}
+.btn-scan-nav{font-family:var(--sans);font-size:.78rem;font-weight:700;padding:9px 20px;background:var(--gr);color:var(--bg);border:none;border-radius:7px;cursor:pointer;letter-spacing:.05em;transition:all .15s}
+.btn-scan-nav:hover{background:var(--gr2);box-shadow:0 0 20px rgba(0,255,163,.45);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero-full{
+  position:relative;z-index:1;max-width:var(--max);margin:0 auto;
+  padding:72px 36px 64px;
+  display:grid;grid-template-columns:1fr;align-items:center;
+  text-align:center;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--gr-a);border:1px solid var(--gr-b);border-radius:100px;
+  padding:4px 13px 4px 9px;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gr);margin-bottom:22px;
+}
+.ht-dot{width:5px;height:5px;border-radius:50%;background:var(--gr);flex-shrink:0;animation:pulse 1.5s infinite}
+h1{
+  font-size:clamp(2.6rem,5vw,5rem);font-weight:700;
+  line-height:.97;letter-spacing:-.02em;color:var(--wh);margin-bottom:14px;
+}
+.h1-gr{color:var(--gr)}
+.h1-sub{font-size:.35em;font-weight:400;display:block;color:var(--tx2);letter-spacing:.03em;margin-top:8px;line-height:1.7}
+.hero-p{font-size:.94rem;color:var(--tx2);line-height:1.8;max-width:580px;margin:0 auto 40px;font-weight:400}
+.hero-p strong{color:var(--wh);font-weight:600}
+
+/* ── MEGA SCANNER ── */
+.scanner-box{
+  background:var(--bg1);border:1px solid var(--gr-b);border-radius:var(--r3);
+  overflow:hidden;max-width:760px;margin:0 auto 56px;
+  box-shadow:0 0 60px rgba(0,255,163,.08),0 24px 60px rgba(0,0,0,.8);
+}
+.sb-topbar{height:2.5px;background:linear-gradient(90deg,var(--gr),var(--cy),var(--gr));background-size:200%;animation:scan 3s linear infinite}
+@keyframes scan{to{background-position:200%}}
+.sb-head{
+  display:flex;align-items:center;gap:10px;padding:14px 18px;
+  border-bottom:1px solid var(--line);background:var(--bg2);
+}
+.sb-dots{display:flex;gap:5px}
+.sb-dot{width:9px;height:9px;border-radius:50%}
+.sb-title{font-family:var(--mono);font-size:.62rem;color:var(--tx2);letter-spacing:.1em;text-transform:uppercase;margin:0 auto}
+
+/* Input area */
+.sb-input-area{padding:20px 20px 16px}
+.sb-input-label{font-family:var(--mono);font-size:.56rem;color:var(--tx3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px;display:flex;align-items:center;gap:8px}
+.sil-indicator{width:6px;height:6px;border-radius:50%;background:var(--gr);animation:pulse 1.6s infinite}
+.sb-row{display:flex;gap:8px}
+.xrpl-inp{
+  flex:1;background:var(--bg3);border:1.5px solid var(--line2);border-radius:var(--r);
+  padding:13px 16px;font-family:var(--mono);font-size:.84rem;color:var(--wh);
+  outline:none;letter-spacing:.04em;transition:border-color .2s;
+}
+.xrpl-inp:focus{border-color:var(--gr-c);box-shadow:0 0 0 3px rgba(0,255,163,.07)}
+.xrpl-inp::placeholder{color:var(--tx3);font-size:.8rem}
+.scan-btn{
+  padding:13px 22px;background:var(--gr);color:var(--bg);border:none;border-radius:var(--r);
+  cursor:pointer;font-family:var(--sans);font-size:.86rem;font-weight:700;
+  letter-spacing:.06em;transition:all .2s;white-space:nowrap;
+  position:relative;overflow:hidden;
+}
+.scan-btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-100%);transition:transform .4s}
+.scan-btn:hover::before{transform:translateX(100%)}
+.scan-btn:hover{background:var(--gr2);box-shadow:0 0 22px rgba(0,255,163,.45)}
+.scan-btn:disabled{background:var(--bg3);color:var(--tx3);cursor:not-allowed;box-shadow:none}
+.sb-note{font-family:var(--mono);font-size:.56rem;color:var(--tx3);letter-spacing:.04em;margin-top:8px;text-align:center}
+
+/* Scan results */
+.sb-results{padding:0 20px 20px;display:none}
+.sr-status{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:8px 14px;border-radius:5px;margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.srs-scan{background:var(--xb-a);border:1px solid var(--xb-b);color:var(--cy)}
+.srs-done{background:var(--gr-a);border:1px solid var(--gr-b);color:var(--gr)}
+.sr-bar{height:3px;background:var(--bg3);border-radius:2px;overflow:hidden;margin-bottom:14px}
+.srb-fill{height:100%;background:var(--gr);border-radius:2px;transition:width 2.5s ease}
+.sr-drop-list{display:flex;flex-direction:column;gap:7px}
+.drop-row{
+  display:flex;align-items:center;gap:12px;padding:11px 14px;
+  border-radius:var(--r);border:1px solid var(--line);
+  transition:all .15s;cursor:default;
+}
+.drop-row.eligible{border-color:var(--gr-b);background:var(--gr-a)}
+.drop-row.unclaimed{border-color:var(--am-b);background:var(--am-a)}
+.drop-row.ineligible{border-color:var(--line);background:var(--bg2);opacity:.6}
+.drop-row.checking{border-color:var(--xb-b);background:var(--xb-a)}
+.dr-ico{font-size:1.1rem;flex-shrink:0;width:24px;text-align:center}
+.dr-info{flex:1}
+.dr-name{font-size:.82rem;font-weight:700;color:var(--wh);margin-bottom:2px}
+.dr-detail{font-family:var(--mono);font-size:.56rem;color:var(--tx2);letter-spacing:.04em}
+.dr-status{font-family:var(--mono);font-size:.62rem;font-weight:600;white-space:nowrap}
+.drs-eligible{color:var(--gr)}
+.drs-unclaimed{color:var(--am)}
+.drs-ineligible{color:var(--tx3)}
+.drs-checking{color:var(--cy)}
+.dr-action{margin-left:8px;padding:5px 12px;border-radius:5px;border:none;cursor:pointer;font-family:var(--mono);font-size:.58rem;font-weight:600;letter-spacing:.05em;transition:all .15s;white-space:nowrap}
+.dra-claim{background:var(--gr-a);border:1px solid var(--gr-b);color:var(--gr)}
+.dra-claim:hover{background:var(--gr-b)}
+.dra-unclaimed{background:var(--am-a);border:1px solid var(--am-b);color:var(--am)}
+.dra-unclaimed:hover{background:var(--am-b);color:var(--bg)}
+
+.sr-summary{
+  background:var(--bg2);border:1px solid var(--gr-b);border-radius:var(--r);
+  padding:13px 16px;margin-top:12px;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.srs-left{font-family:var(--mono);font-size:.6rem;color:var(--tx2);letter-spacing:.05em}
+.srs-val{font-family:var(--mono);font-size:1.05rem;font-weight:700;color:var(--gr)}
+.srs-note{font-family:var(--mono);font-size:.52rem;color:var(--tx3)}
+
+/* Hero pills */
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:0}
+.hpill{
+  display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:100px;
+  background:var(--bg2);border:1px solid var(--line);
+  font-family:var(--mono);font-size:.59rem;color:var(--tx2);letter-spacing:.04em;
+  transition:all .15s;cursor:pointer;text-transform:uppercase;
+}
+.hpill:hover{border-color:var(--gr-b);color:var(--gr)}
+.hpill.hi{background:var(--gr-a);border-color:var(--gr-b);color:var(--gr)}
+
+/* ── SECTION ── */
+.section{position:relative;z-index:1}
+.container{max-width:var(--max);margin:0 auto;padding:72px 36px}
+.eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gr);margin-bottom:10px;display:flex;align-items:center;gap:10px;opacity:.85}
+.eyebrow::before{content:'';width:12px;height:1px;background:var(--gr);opacity:.6}
+h2{font-size:clamp(1.9rem,3.5vw,3rem);font-weight:700;letter-spacing:-.02em;line-height:1.07;color:var(--wh)}
+h2 em{font-style:normal;color:var(--gr)}
+.sec-sub{font-size:.9rem;color:var(--tx2);line-height:1.8;margin-top:10px;max-width:520px;font-weight:400}
+
+/* ── MBAND ── */
+.mband{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);background:var(--bg1);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mc{padding:18px 22px;border-right:1px solid var(--line);transition:background .15s}
+.mc:last-child{border-right:none}
+.mc:hover{background:var(--gr-a)}
+.mv{font-family:var(--mono);font-size:1.25rem;font-weight:600;color:var(--gr);line-height:1;margin-bottom:3px;letter-spacing:-.02em}
+.mk{font-family:var(--mono);font-size:.52rem;color:var(--tx3);letter-spacing:1.5px;text-transform:uppercase}
+.mch{font-family:var(--mono);font-size:.5rem;margin-top:2px;color:var(--tx2)}
+
+/* ── DROPS DATABASE ── */
+.drops-layout{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:44px}
+.drop-card{
+  background:var(--bg1);border:1px solid var(--line);border-radius:var(--r2);
+  padding:20px;cursor:pointer;transition:all .15s;
+  position:relative;overflow:hidden;
+}
+.drop-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gr),transparent);opacity:0;transition:opacity .2s}
+.drop-card:hover{border-color:var(--gr-b);background:var(--bg2);transform:translateY(-2px)}
+.drop-card:hover::before{opacity:1}
+.dc-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.dc-logo{font-size:1.6rem}
+.dc-status{font-family:var(--mono);font-size:.54rem;padding:2px 8px;border-radius:4px}
+.dcs-live{background:var(--gr-a);border:1px solid var(--gr-b);color:var(--gr)}
+.dcs-ended{background:var(--rd-a);border:1px solid var(--rd-b);color:var(--rd)}
+.dcs-upcoming{background:var(--am-a);border:1px solid var(--am-b);color:var(--am)}
+.dcs-unclaimed{background:var(--cy-a);border:1px solid var(--cy-b);color:var(--cy)}
+.dc-name{font-size:.96rem;font-weight:700;color:var(--wh);margin-bottom:3px;letter-spacing:.01em}
+.dc-token{font-family:var(--mono);font-size:.62rem;color:var(--gr);margin-bottom:8px;letter-spacing:.04em}
+.dc-desc{font-size:.79rem;color:var(--tx2);line-height:1.75;font-weight:400;margin-bottom:12px}
+.dc-details{display:flex;flex-direction:column;gap:4px}
+.dcd-row{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.58rem}
+.dcd-k{color:var(--tx3);letter-spacing:.04em}
+.dcd-v{color:var(--wh);font-weight:600}
+.dcd-v.grn{color:var(--gr)}
+.dcd-v.am{color:var(--am)}
+.dcd-v.rd{color:var(--rd)}
+.dc-cta{
+  width:100%;margin-top:12px;padding:8px;border-radius:var(--r);
+  cursor:pointer;font-family:var(--sans);font-size:.76rem;font-weight:700;
+  letter-spacing:.05em;transition:all .15s;border:none;
+}
+.dcc-scan{background:var(--gr-a);border:1px solid var(--gr-b);color:var(--gr)}
+.dcc-scan:hover{background:var(--gr-b)}
+.dcc-claim{background:var(--am-a);border:1px solid var(--am-b);color:var(--am)}
+.dcc-claim:hover{background:var(--am-b);color:var(--bg)}
+
+/* ── TRUST LINES ── */
+.trust-bg{background:var(--bg1);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.tl-steps{margin-top:40px;display:flex;flex-direction:column;gap:0}
+.tls{
+  padding:20px 0;border-bottom:1px solid var(--line);
+  display:flex;gap:15px;cursor:pointer;transition:all .15s;
+}
+.tls:first-child{border-top:1px solid var(--line)}
+.tls:hover .tls-title{color:var(--gr)}
+.tls-num{
+  width:30px;height:30px;border-radius:7px;
+  background:var(--gr-a);border:1px solid var(--gr-b);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.64rem;font-weight:700;color:var(--gr);
+  flex-shrink:0;transition:all .2s;
+}
+.tls:hover .tls-num{background:var(--gr);color:var(--bg)}
+.tls-body{}
+.tls-title{font-size:.9rem;font-weight:700;color:var(--wh);margin-bottom:5px;transition:color .15s}
+.tls-desc{font-size:.79rem;color:var(--tx2);line-height:1.75;font-weight:400}
+.tls-tag{margin-top:6px;font-family:var(--mono);font-size:.56rem;color:var(--gr);letter-spacing:.06em;opacity:.8}
+.trust-right{padding-top:40px;display:flex;flex-direction:column;gap:10px}
+.tr-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r2);padding:20px;transition:border-color .15s}
+.tr-card:hover{border-color:var(--line2)}
+.trc-lbl{font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);margin-bottom:7px}
+.trc-val{font-family:var(--mono);font-size:1.25rem;font-weight:600;color:var(--wh);margin-bottom:4px;line-height:1;letter-spacing:-.02em}
+.trc-val em{color:var(--gr);font-style:normal}
+.trc-desc{font-size:.78rem;color:var(--tx2);line-height:1.7;font-weight:400}
+
+/* ── SAFETY ── */
+.safety-bg{border-top:1px solid var(--line)}
+.safety-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px}
+.safety-card{
+  background:var(--bg1);border:1px solid var(--line);border-radius:var(--r2);
+  padding:20px;cursor:default;
+}
+.sfc-ico{font-size:1.5rem;display:block;margin-bottom:10px}
+.sfc-title{font-size:.92rem;font-weight:700;color:var(--wh);margin-bottom:6px;letter-spacing:.01em}
+.sfc-desc{font-size:.78rem;color:var(--tx2);line-height:1.75;font-weight:400}
+.sfc-rule{
+  margin-top:10px;padding:7px 10px;border-radius:5px;
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.04em;
+}
+.sfr-never{background:var(--rd-a);border:1px solid var(--rd-b);color:var(--rd)}
+.sfr-always{background:var(--gr-a);border:1px solid var(--gr-b);color:var(--gr)}
+
+/* ── FAQ ── */
+.faq-bg{background:var(--bg1);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.faq-layout{display:grid;grid-template-columns:240px 1fr;gap:56px}
+.faq-side-title{font-size:1.4rem;font-weight:700;color:var(--wh);line-height:1.2;margin-top:12px;margin-bottom:12px;letter-spacing:-.02em}
+.faq-side-note{font-size:.8rem;color:var(--tx2);line-height:1.75;font-weight:400}
+.faq-list{list-style:none}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item:first-child{border-top:1px solid var(--line)}
+.faq-q{width:100%;background:none;border:none;cursor:pointer;padding:16px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;text-align:left}
+.faq-qt{font-size:.87rem;font-weight:600;color:var(--wh);line-height:1.5;transition:color .15s}
+.faq-q:hover .faq-qt{color:var(--gr)}
+.faq-ic{font-size:.68rem;color:var(--tx2);flex-shrink:0;margin-top:3px;transition:transform .25s}
+.faq-item.open .faq-ic{transform:rotate(45deg);color:var(--gr)}
+.faq-ans{font-size:.82rem;color:var(--tx2);line-height:1.85;max-height:0;overflow:hidden;transition:max-height .38s ease,padding .3s;font-weight:400}
+.faq-item.open .faq-ans{max-height:320px;padding-bottom:16px}
+.faq-ans strong{color:var(--wh);font-weight:600}
+
+/* ── CTA ── */
+.cta-sec{border-top:1px solid var(--line);position:relative;overflow:hidden;z-index:1}
+.cta-sec::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(0,255,163,.05) 0%,transparent 65%)}
+.cta-in{max-width:var(--max);margin:0 auto;padding:80px 36px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative}
+.cta-hl{font-size:clamp(2rem,4.5vw,3.6rem);font-weight:700;letter-spacing:-.03em;line-height:1.04;margin-bottom:14px;color:var(--wh)}
+.cta-hl em{display:block;color:var(--gr);font-style:normal}
+.cta-sub{font-size:.9rem;color:var(--tx2);line-height:1.8;font-weight:400}
+.cta-right{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.btn-pri-cta{font-size:.9rem;font-weight:700;padding:13px 28px;background:var(--gr);color:var(--bg);border:none;border-radius:8px;cursor:pointer;letter-spacing:.05em;transition:all .18s}
+.btn-pri-cta:hover{background:var(--gr2);box-shadow:0 0 26px rgba(0,255,163,.45);transform:translateY(-1px)}
+.btn-sec-cta{font-size:.88rem;font-weight:500;padding:12px 20px;background:transparent;color:var(--tx2);border:1px solid var(--line2);border-radius:8px;cursor:pointer;transition:all .15s}
+.btn-sec-cta:hover{border-color:var(--cy-b);color:var(--cy)}
+.cta-note{font-family:var(--mono);font-size:.56rem;color:var(--tx3);letter-spacing:.05em;margin-top:4px}
+
+/* ── FOOTER ── */
+footer{background:var(--bg1);border-top:1px solid var(--line)}
+.ft-in{max-width:var(--max);margin:0 auto;padding:52px 36px 26px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;padding-bottom:40px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.ft-logo-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.ft-brand{font-size:1rem;font-weight:700;color:var(--wh);letter-spacing:.02em}
+.ft-desc{font-size:.78rem;color:var(--tx3);line-height:1.8;font-weight:400;max-width:220px}
+.ft-col h5{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tx3);margin-bottom:13px;font-weight:400}
+.ft-col a{display:block;font-size:.78rem;color:var(--tx3);text-decoration:none;margin-bottom:8px;transition:color .15s;font-weight:400}
+.ft-col a:hover{color:var(--white)}
+.ft-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.fc{font-family:var(--mono);font-size:.54rem;color:var(--tx3);letter-spacing:.04em}
+
+/* Scan animation */
+@keyframes scanline{
+  0%{top:-20%}100%{top:120%}
+}
+.scanning-overlay{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;border-radius:var(--r3);
+  display:none;
+}
+.scanning-overlay.active{display:block}
+.scan-line{
+  position:absolute;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gr),transparent);
+  opacity:.6;
+  animation:scanline 1.5s linear infinite;
+}
+
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--bg2);border:1px solid var(--line2);color:var(--wh);padding:9px 18px;border-radius:7px;font-family:var(--mono);font-size:.7rem;opacity:0;z-index:600;transition:all .22s;pointer-events:none;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,.5)}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.fu{opacity:0}.fu.vis{animation:fadeUp .5s ease both}.fu.d1{animation-delay:.1s}.fu.d2{animation-delay:.2s}
+
+@media(max-width:900px){
+  .trust-layout,.cta-in{grid-template-columns:1fr;gap:40px}
+  .drops-layout,.safety-grid{grid-template-columns:1fr 1fr}
+  .faq-layout{grid-template-columns:1fr;gap:28px}
+  .mband{grid-template-columns:1fr 1fr}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  nav ul{display:none}
+  .container{padding:56px 20px}
+  .hero-full{padding:60px 20px 48px}
+  h1{font-size:2.8rem}
+}
+@media(max-width:600px){
+  .drops-layout,.safety-grid{grid-template-columns:1fr}
+  .mband{grid-template-columns:1fr 1fr}
+  .ft-grid{grid-template-columns:1fr}
+  .sb-row{flex-direction:column}
+  .scan-btn{width:100%}
+}
+</style>
+</head>
+<body>
+<a class="xrpl-wallet-connect skip" href="#main">Skip to content</a>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <div class="xrpl-wallet-connect nav-in">
+    <a href="/" class="xrpl-wallet-connect nav-brand" aria-label="XRP Airdrop Checker home">
+      <div class="xrpl-wallet-connect ac-logo" aria-hidden="true">⬡✓</div>
+      <div>
+        <div class="xrpl-wallet-connect brand-name">XRP Airdrop Checker</div>
+        <div class="xrpl-wallet-connect brand-sub">XRPL wallet scanner</div>
+      </div>
+    </a>
+    <ul>
+      <li><a href="#scan" class="xrpl-wallet-connect active">Scan</a></li>
+      <li><a href="#drops">All drops</a></li>
+      <li><a href="#trust">Trust lines</a></li>
+      <li><a href="#safety">Stay safe</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="xrpl-wallet-connect nav-r">
+      <div class="xrpl-wallet-connect scan-chip"><span class="xrpl-wallet-connect sc-dot" aria-hidden="true"></span>Live scan</div>
+      <button class="xrpl-wallet-connect btn-scan-nav godubai" onclick="sc('scan');document.getElementById('xrpl-addr').focus()">Scan wallet</button>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ═══ HERO + SCANNER ═══ -->
+<section class="xrpl-wallet-connect hero-full" id="scan" aria-labelledby="hero-h1">
+  <div class="xrpl-wallet-connect hero-tag"><span class="xrpl-wallet-connect ht-dot" aria-hidden="true"></span>6 drops tracked · Non-custodial scan · Paste address only</div>
+  <h1 id="hero-h1"><span class="xrpl-wallet-connect h1-gr">Scan your XRP wallet</span><br>for unclaimed airdrops.
+    <span class="xrpl-wallet-connect h1-sub">Paste your XRPL address · No wallet connection · Instant results</span>
+  </h1>
+  <p class="xrpl-wallet-connect hero-p">
+    Check your XRP Ledger address against <strong>NIGHT (Midnight), Flare FLR/SGB, Evernode EVRS, XAO DAO, RLUSD</strong> and more. 
+    Read-only scan — your private keys are never requested.
+  </p>
+
+  <!-- MEGA SCANNER -->
+  <div class="xrpl-wallet-connect scanner-box" role="region" aria-label="XRPL airdrop scanner">
+    <div class="xrpl-wallet-connect sb-topbar"></div>
+    <div class="xrpl-wallet-connect sb-head">
+      <div class="xrpl-wallet-connect sb-dots" aria-hidden="true">
+        <div class="xrpl-wallet-connect sb-dot" style="background:#FF5F57"></div>
+        <div class="xrpl-wallet-connect sb-dot" style="background:#FFBD2E"></div>
+        <div class="xrpl-wallet-connect sb-dot" style="background:#28C840"></div>
+      </div>
+      <span class="xrpl-wallet-connect sb-title">xrpl-airdrop-scanner.sh — read-only</span>
+    </div>
+
+    <div class="xrpl-wallet-connect sb-input-area">
+      <div class="xrpl-wallet-connect sb-input-label">
+        <span class="xrpl-wallet-connect sil-indicator" aria-hidden="true"></span>
+        Enter XRPL wallet address
+      </div>
+      <div class="xrpl-wallet-connect sb-row">
+        <input
+          class="xrpl-wallet-connect xrpl-inp"
+          type="text"
+          id="xrpl-addr"
+          placeholder="rXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+          autocomplete="off"
+          spellcheck="false"
+          maxlength="46"
+          aria-label="XRPL wallet address to scan"
+          oninput="onAddrChange()"
+        />
+        <button class="xrpl-wallet-connect scan-btn godubai" id="do-scan" onclick="runScan()" disabled aria-label="Scan wallet for airdrops">
+          ⬡ Scan
+        </button>
+      </div>
+      <div class="xrpl-wallet-connect sb-note">Read-only · No private key · No wallet connection needed · Paste any XRPL address starting with 'r'</div>
+    </div>
+
+    <!-- Results area -->
+    <div class="xrpl-wallet-connect sb-results" id="scan-results">
+      <div class="xrpl-wallet-connect sr-status srs-scan" id="sr-status">
+        <span id="sr-status-dot" style="width:6px;height:6px;border-radius:50%;background:var(--cy);animation:pulse 1s infinite;flex-shrink:0"></span>
+        <span id="sr-status-txt">Scanning address against 6 airdrop programs…</span>
+      </div>
+      <div class="xrpl-wallet-connect sr-bar"><div class="xrpl-wallet-connect srb-fill" id="sr-progress" style="width:0%"></div></div>
+
+      <div class="xrpl-wallet-connect sr-drop-list" id="drop-list" role="list" aria-label="Airdrop scan results"></div>
+
+      <div class="xrpl-wallet-connect sr-summary" id="sr-summary" style="display:none">
+        <div>
+          <div class="xrpl-wallet-connect srs-left">Scan complete · <span id="addr-display"></span></div>
+          <div class="xrpl-wallet-connect srs-val" id="eligible-count">—</div>
+          <div class="xrpl-wallet-connect srs-note" id="eligible-note">—</div>
+        </div>
+        <button class="xrpl-wallet-connect dra-claim" onclick="sc('drops')" style="padding:7px 14px;border-radius:6px;cursor:pointer;font-family:var(--mono);font-size:.6rem;font-weight:600;letter-spacing:.05em;transition:all .15s;background:var(--gr-a);border:1px solid var(--gr-b);color:var(--gr)">View all drops →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Demo addresses / quick scan -->
+  <div style="margin-bottom:32px">
+    <p style="font-family:var(--mono);font-size:.58rem;color:var(--tx3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px">Try a demo scan:</p>
+    <div class="xrpl-wallet-connect hero-pills">
+      <div class="xrpl-wallet-connect hpill hi" onclick="demoScan('rDemoAddressNIGHTEligible12345678')" role="button" tabindex="0">💧 Demo: NIGHT eligible</div>
+      <div class="xrpl-wallet-connect hpill" onclick="demoScan('rDemoFlareUnclaimedAddress12345')" role="button" tabindex="0">🔥 Demo: FLR unclaimed</div>
+      <div class="xrpl-wallet-connect hpill" onclick="demoScan('rDemoNewAddressNoDrops12345678')" role="button" tabindex="0">🔍 Demo: no drops found</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <button class="xrpl-wallet-connect btn-sec" style="font-family:var(--sans);font-size:.88rem;font-weight:500;padding:11px 20px;background:transparent;color:var(--tx2);border:1px solid var(--line2);border-radius:8px;cursor:pointer;transition:all .15s" onclick="sc('drops')">All tracked drops →</button>
+    <button class="xrpl-wallet-connect btn-sec" style="font-family:var(--sans);font-size:.88rem;font-weight:500;padding:11px 20px;background:transparent;color:var(--tx2);border:1px solid var(--line2);border-radius:8px;cursor:pointer;transition:all .15s" onclick="sc('trust')">Trust line guide →</button>
+  </div>
+</section>
+
+<!-- MBAND -->
+<div class="xrpl-wallet-connect mband" role="region" aria-label="XRP airdrop statistics">
+  <div class="xrpl-wallet-connect mc"><div class="xrpl-wallet-connect mv">6</div><div class="xrpl-wallet-connect mk">Drops tracked</div><div class="xrpl-wallet-connect mch">Scan all at once</div></div>
+  <div class="xrpl-wallet-connect mc"><div class="xrpl-wallet-connect mv">1.2B</div><div class="xrpl-wallet-connect mk">NIGHT to XRP</div><div class="xrpl-wallet-connect mch">5% of 24B supply</div></div>
+  <div class="xrpl-wallet-connect mc"><div class="xrpl-wallet-connect mv">37M+</div><div class="xrpl-wallet-connect mk">Wallets eligible</div><div class="xrpl-wallet-connect mch">NIGHT drop</div></div>
+  <div class="xrpl-wallet-connect mc"><div class="xrpl-wallet-connect mv">$100</div><div class="xrpl-wallet-connect mk">NIGHT min balance</div><div class="xrpl-wallet-connect mch">At Jun 11, 2025 snap</div></div>
+</div>
+
+<!-- ═══ DROPS DATABASE ═══ -->
+<section class="xrpl-wallet-connect section" id="drops" aria-labelledby="drops-title">
+  <div class="xrpl-wallet-connect container">
+    <div class="xrpl-wallet-connect fu">
+      <p class="xrpl-wallet-connect eyebrow">Airdrop database</p>
+      <h2 id="drops-title">Every XRP drop.<br><em>Tracked & checked.</em></h2>
+      <p class="xrpl-wallet-connect sec-sub">All known XRPL airdrops — past, present, and upcoming — with eligibility requirements, snapshot dates, and claim status.</p>
+    </div>
+    <div class="xrpl-wallet-connect drops-layout fu d1" role="list">
+
+      <!-- NIGHT -->
+      <div class="xrpl-wallet-connect drop-card" role="listitem" onclick="scrollToScan()">
+        <div class="xrpl-wallet-connect dc-head">
+          <div class="xrpl-wallet-connect dc-logo">🌙</div>
+          <div class="xrpl-wallet-connect dc-status dcs-unclaimed">⚠ Check unclaimed</div>
+        </div>
+        <div class="xrpl-wallet-connect dc-name">Midnight — NIGHT Token</div>
+        <div class="xrpl-wallet-connect dc-token">NIGHT · 1.2B to XRP holders</div>
+        <p class="xrpl-wallet-connect dc-desc">Cardano's Midnight privacy blockchain airdropped NIGHT governance tokens across 8 chains. XRP holders received 5% of the 24 billion total supply. Snapshot: June 11, 2025. Minimum $100 XRP in non-custodial wallet.</p>
+        <div class="xrpl-wallet-connect dc-details">
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Snapshot</span><span class="xrpl-wallet-connect dcd-v">Jun 11, 2025</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">XRP share</span><span class="xrpl-wallet-connect dcd-v grn">1.2B NIGHT (5%)</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Minimum</span><span class="xrpl-wallet-connect dcd-v">$100 XRP (non-custodial)</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Eligible wallets</span><span class="xrpl-wallet-connect dcd-v">37M+ total (8 chains)</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Claim window</span><span class="xrpl-wallet-connect dcd-v am">Aug 5 – Oct 2025 (check)</span></div>
+        </div>
+        <button class="xrpl-wallet-connect dc-cta dcc-scan godubai" onclick="event.stopPropagation();scrollToScan()">Scan my wallet →</button>
+      </div>
+
+      <!-- Flare FLR -->
+      <div class="xrpl-wallet-connect drop-card" role="listitem" onclick="scrollToScan()">
+        <div class="xrpl-wallet-connect dc-head">
+          <div class="xrpl-wallet-connect dc-logo">🔥</div>
+          <div class="xrpl-wallet-connect dc-status dcs-unclaimed">⚠ Still claimable</div>
+        </div>
+        <div class="xrpl-wallet-connect dc-name">Flare Network</div>
+        <div class="xrpl-wallet-connect dc-token">FLR + SGB · Ongoing claims</div>
+        <p class="xrpl-wallet-connect dc-desc">The original XRP airdrop — Flare Finance distributed FLR tokens to XRP holders who held XRP on December 12, 2020 (snapshot). Some wallets still have unclaimed FLR and SGB (Songbird) rewards as of 2026. Non-custodial wallets like XUMM can still access old rewards.</p>
+        <div class="xrpl-wallet-connect dc-details">
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">FLR Snapshot</span><span class="xrpl-wallet-connect dcd-v">Dec 12, 2020</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Distribution</span><span class="xrpl-wallet-connect dcd-v">Ongoing monthly</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">SGB Snapshot</span><span class="xrpl-wallet-connect dcd-v">Sep 12, 2021</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Claim status</span><span class="xrpl-wallet-connect dcd-v am">Many still unclaimed</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Required</span><span class="xrpl-wallet-connect dcd-v">XUMM + Flare Trust Line</span></div>
+        </div>
+        <button class="xrpl-wallet-connect dc-cta dcc-claim godubai" onclick="event.stopPropagation();scrollToScan()">Check FLR balance →</button>
+      </div>
+
+      <!-- Evernode -->
+      <div class="xrpl-wallet-connect drop-card" role="listitem" onclick="scrollToScan()">
+        <div class="xrpl-wallet-connect dc-head">
+          <div class="xrpl-wallet-connect dc-logo">🌐</div>
+          <div class="xrpl-wallet-connect dc-status dcs-live">Active</div>
+        </div>
+        <div class="xrpl-wallet-connect dc-name">Evernode</div>
+        <div class="xrpl-wallet-connect dc-token">EVRS · XRPL Layer 2 smart contracts</div>
+        <p class="xrpl-wallet-connect dc-desc">Evernode — XRPL's Layer 2 smart contract platform — airdropped 5,160,960 EVRS to XRP holders. Snapshot was taken before the Hooks sidechain launch. Holders needed their XRP stored on-chain (non-custodial), not on exchanges.</p>
+        <div class="xrpl-wallet-connect dc-details">
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Total airdropped</span><span class="xrpl-wallet-connect dcd-v grn">5,160,960 EVRS</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Requirement</span><span class="xrpl-wallet-connect dcd-v">On-chain XRP only</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Network</span><span class="xrpl-wallet-connect dcd-v">Hooks sidechain</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Trust Line</span><span class="xrpl-wallet-connect dcd-v am">Required for EVRS</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Claim</span><span class="xrpl-wallet-connect dcd-v">Via Xaman wallet</span></div>
+        </div>
+        <button class="xrpl-wallet-connect dc-cta dcc-scan godubai" onclick="event.stopPropagation();scrollToScan()">Check EVRS eligibility →</button>
+      </div>
+
+      <!-- XAO DAO -->
+      <div class="xrpl-wallet-connect drop-card" role="listitem" onclick="scrollToScan()">
+        <div class="xrpl-wallet-connect dc-head">
+          <div class="xrpl-wallet-connect dc-logo">⬡</div>
+          <div class="xrpl-wallet-connect dc-status dcs-live">Points active</div>
+        </div>
+        <div class="xrpl-wallet-connect dc-name">XAO DAO Governance</div>
+        <div class="xrpl-wallet-connect dc-token">XAO Points → Governance weight</div>
+        <p class="xrpl-wallet-connect dc-desc">XAO DAO — launched February 27, 2026 as XRPL's community governance layer — uses XRP holdings as voting weight. O-Points tracking via XRP on-chain activity. Active XRP holders may have accumulated governance credits since 2025 testnet rollout.</p>
+        <div class="xrpl-wallet-connect dc-details">
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Launch</span><span class="xrpl-wallet-connect dcd-v grn">Feb 27, 2026</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Token</span><span class="xrpl-wallet-connect dcd-v">No separate token</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Voting power</span><span class="xrpl-wallet-connect dcd-v">XRP holdings snapshot</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Requirement</span><span class="xrpl-wallet-connect dcd-v">Non-custodial XRP</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Anti-whale</span><span class="xrpl-wallet-connect dcd-v grn">Power capped</span></div>
+        </div>
+        <button class="xrpl-wallet-connect dc-cta dcc-scan godubai" onclick="event.stopPropagation();scrollToScan()">Check DAO points →</button>
+      </div>
+
+      <!-- wXRP ecosystem -->
+      <div class="xrpl-wallet-connect drop-card" role="listitem" onclick="scrollToScan()">
+        <div class="xrpl-wallet-connect dc-head">
+          <div class="xrpl-wallet-connect dc-logo">💧</div>
+          <div class="xrpl-wallet-connect dc-status dcs-upcoming">🔆 Incoming</div>
+        </div>
+        <div class="xrpl-wallet-connect dc-name">wXRP Ecosystem Drops</div>
+        <div class="xrpl-wallet-connect dc-token">wXRP launch incentives · Apr 17, 2026</div>
+        <p class="xrpl-wallet-connect dc-desc">With wXRP launching on Solana on April 17, 2026 via Hex Trust and LayerZero, multiple Solana DeFi protocols (Jupiter, Meteora) are expected to run early liquidity provider incentives for wXRP holders. Early bridgers and LP providers typically qualify for retroactive drops.</p>
+        <div class="xrpl-wallet-connect dc-details">
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">wXRP launch</span><span class="xrpl-wallet-connect dcd-v grn">Apr 17, 2026</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Platforms</span><span class="xrpl-wallet-connect dcd-v">Jupiter, Meteora, Titan</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Strategy</span><span class="xrpl-wallet-connect dcd-v">Bridge early + provide LP</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Status</span><span class="xrpl-wallet-connect dcd-v am">Unconfirmed / expected</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Requirement</span><span class="xrpl-wallet-connect dcd-v">Solana wallet + wXRP</span></div>
+        </div>
+        <button class="xrpl-wallet-connect dc-cta dcc-scan godubai" onclick="event.stopPropagation();toast('wXRP ecosystem drops — connect Solana wallet and bridge early')">Learn more →</button>
+      </div>
+
+      <!-- RLUSD / Ripple -->
+      <div class="xrpl-wallet-connect drop-card" role="listitem" onclick="scrollToScan()">
+        <div class="xrpl-wallet-connect dc-head">
+          <div class="xrpl-wallet-connect dc-logo">💵</div>
+          <div class="xrpl-wallet-connect dc-status dcs-upcoming">Monitor</div>
+        </div>
+        <div class="xrpl-wallet-connect dc-name">RLUSD Distribution Events</div>
+        <div class="xrpl-wallet-connect dc-token">RLUSD · $1.2B+ circulating</div>
+        <p class="xrpl-wallet-connect dc-desc">Ripple's RLUSD stablecoin (over $1.2 billion circulating by late 2025) periodically runs distribution campaigns to incentivize XRPL ecosystem activity. Active XRPL wallets and liquidity providers in XRP/RLUSD AMM pools have received RLUSD rewards in past campaigns.</p>
+        <div class="xrpl-wallet-connect dc-details">
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">RLUSD supply</span><span class="xrpl-wallet-connect dcd-v grn">$1.2B+ (late 2025)</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Strategy</span><span class="xrpl-wallet-connect dcd-v">XRPL AMM liquidity</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Eligibility</span><span class="xrpl-wallet-connect dcd-v">Active XRPL wallets</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Trust Line</span><span class="xrpl-wallet-connect dcd-v am">Required for RLUSD</span></div>
+          <div class="xrpl-wallet-connect dcd-row"><span class="xrpl-wallet-connect dcd-k">Status</span><span class="xrpl-wallet-connect dcd-v am">Periodic campaigns</span></div>
+        </div>
+        <button class="xrpl-wallet-connect dc-cta dcc-scan godubai" onclick="event.stopPropagation();scrollToScan()">Check wallet activity →</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUST LINES ═══ -->
+<section class="xrpl-wallet-connect section trust-bg" id="trust" aria-labelledby="trust-title">
+  <div class="xrpl-wallet-connect container">
+    <div class="xrpl-wallet-connect trust-layout">
+      <div class="xrpl-wallet-connect fu">
+        <p class="xrpl-wallet-connect eyebrow">Trust lines</p>
+        <h2 id="trust-title">Opt in to<br><em>receive tokens</em>.</h2>
+        <p class="xrpl-wallet-connect sec-sub">XRPL requires a manual Trust Line before you can receive any token. Unlike Ethereum, tokens can't be "pushed" to your address — you must explicitly authorize each token issuer.</p>
+        <div class="xrpl-wallet-connect tl-steps fu d1" role="list">
+          <div class="xrpl-wallet-connect tls" role="listitem" onclick="toast('Open Xaman (XUMM) and go to Tokens')">
+            <div class="xrpl-wallet-connect tls-num">1</div>
+            <div class="xrpl-wallet-connect tls-body">
+              <div class="xrpl-wallet-connect tls-title">Open XUMM (Xaman)</div>
+              <div class="xrpl-wallet-connect tls-desc">Open your XUMM or Crossmark wallet. Navigate to the Tokens section. This is where you manage Trust Lines for your XRPL account.</div>
+              <span class="xrpl-wallet-connect tls-tag">XUMM · CROSSMARK · LEDGER XRPL APP</span>
+            </div>
+          </div>
+          <div class="xrpl-wallet-connect tls" role="listitem" onclick="toast('Find the token issuer address from the official project')">
+            <div class="xrpl-wallet-connect tls-num">2</div>
+            <div class="xrpl-wallet-connect tls-body">
+              <div class="xrpl-wallet-connect tls-title">Find the official issuer address</div>
+              <div class="xrpl-wallet-connect tls-desc">Always copy the token issuer address from the official project website or verified social accounts only. Never trust addresses from Telegram, DMs, or unofficial sources. Verify on XRPL explorers like Bithomp or XRPScan.</div>
+              <span class="xrpl-wallet-connect tls-tag">OFFICIAL ONLY · VERIFY ON XRPSCAN · NEVER DMs</span>
+            </div>
+          </div>
+          <div class="xrpl-wallet-connect tls" role="listitem" onclick="toast('Set up Trust Line in XUMM — requires ~2 XRP reserve')">
+            <div class="xrpl-wallet-connect tls-num">3</div>
+            <div class="xrpl-wallet-connect tls-body">
+              <div class="xrpl-wallet-connect tls-title">Set Trust Line in XUMM</div>
+              <div class="xrpl-wallet-connect tls-desc">In XUMM, go to Add Token → enter the issuer address and currency code (e.g. NIGHT, FLR, EVRS). Setting a Trust Line costs ~2 XRP reserve — this is not a fee, it's locked as long as the Trust Line exists and returned when you remove it.</div>
+              <span class="xrpl-wallet-connect tls-tag">~2 XRP RESERVE · RETURNED ON REMOVAL</span>
+            </div>
+          </div>
+          <div class="xrpl-wallet-connect tls" role="listitem" onclick="toast('After Trust Line, tokens can be delivered to your wallet')">
+            <div class="xrpl-wallet-connect tls-num">4</div>
+            <div class="xrpl-wallet-connect tls-body">
+              <div class="xrpl-wallet-connect tls-title">Tokens can now be received</div>
+              <div class="xrpl-wallet-connect tls-desc">Once the Trust Line is set, the project can deliver tokens to your address during the airdrop distribution. Always set Trust Lines before the distribution date — not after. Check official project channels for exact timing.</div>
+              <span class="xrpl-wallet-connect tls-tag">SET BEFORE DISTRIBUTION · CHECK OFFICIAL TIMELINE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xrpl-wallet-connect trust-right fu d2">
+        <div class="xrpl-wallet-connect tr-card">
+          <div class="xrpl-wallet-connect trc-lbl">Trust Line reserve</div>
+          <div class="xrpl-wallet-connect trc-val">~2 XRP <em>per line</em></div>
+          <div class="xrpl-wallet-connect trc-desc">Each Trust Line on XRPL locks ~2 XRP as a reserve — not a fee, it's returned when you remove the Trust Line. If your wallet drops below the minimum reserve (10 XRP base + 2 XRP per Trust Line), you may not be able to transact.</div>
+        </div>
+        <div class="xrpl-wallet-connect tr-card">
+          <div class="xrpl-wallet-connect trc-lbl">Why XRPL requires opt-in</div>
+          <div class="xrpl-wallet-connect trc-val">Spam <em>prevention</em></div>
+          <div class="xrpl-wallet-connect trc-desc">XRPL's Trust Line requirement prevents token spam — no one can fill your wallet with worthless tokens without your consent. This is fundamentally different from Ethereum where anyone can send tokens to any address. It's a security feature, not a limitation.</div>
+        </div>
+        <div class="xrpl-wallet-connect tr-card">
+          <div class="xrpl-wallet-connect trc-lbl">Required Trust Lines for tracked drops</div>
+          <div class="xrpl-wallet-connect trc-val">NIGHT, FLR,<em> EVRS</em></div>
+          <div class="xrpl-wallet-connect trc-desc">Set Trust Lines before distribution dates for: NIGHT (Midnight network issuer), FLR (Flare Network), SGB (Songbird), EVRS (Evernode), RLUSD (Ripple). XUMM supports all of these natively.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SAFETY ═══ -->
+<section class="xrpl-wallet-connect section safety-bg" id="safety" aria-labelledby="safety-title">
+  <div class="xrpl-wallet-connect container">
+    <div class="xrpl-wallet-connect fu">
+      <p class="xrpl-wallet-connect eyebrow">Stay safe</p>
+      <h2 id="safety-title">Airdrop scams<br><em>are everywhere</em>.</h2>
+      <p class="xrpl-wallet-connect sec-sub">Every major airdrop attracts scammers. Know the rules before you claim anything.</p>
+    </div>
+    <div class="xrpl-wallet-connect safety-grid fu d1" role="list">
+      <div class="xrpl-wallet-connect safety-card" role="listitem">
+        <span class="xrpl-wallet-connect sfc-ico" aria-hidden="true">🔑</span>
+        <div class="xrpl-wallet-connect sfc-title">Never share your seed phrase</div>
+        <p class="xrpl-wallet-connect sfc-desc">Legitimate airdrops never require your 12 or 24 word seed phrase, private key, or secret key. Any website, bot, or person asking for this is a scam — regardless of how official it looks. Your seed phrase is the only thing that grants access to your wallet.</p>
+        <div class="xrpl-wallet-connect sfc-rule sfr-never">✗ Never enter seed phrase on ANY website</div>
+      </div>
+      <div class="xrpl-wallet-connect safety-card" role="listitem">
+        <span class="xrpl-wallet-connect sfc-ico" aria-hidden="true">🌐</span>
+        <div class="xrpl-wallet-connect sfc-title">Use official URLs only</div>
+        <p class="xrpl-wallet-connect sfc-desc">Always verify you're on the official project website before clicking claim. Scammers create lookalike domains (midnight-claim.com, flare-airdrop.io) that steal funds when you connect. Bookmark official sites. Check domain age and official social media for links.</p>
+        <div class="xrpl-wallet-connect sfc-rule sfr-always">✓ Verify domain via official Twitter/X account</div>
+      </div>
+      <div class="xrpl-wallet-connect safety-card" role="listitem">
+        <span class="xrpl-wallet-connect sfc-ico" aria-hidden="true">💬</span>
+        <div class="xrpl-wallet-connect sfc-title">Ignore DMs about airdrops</div>
+        <p class="xrpl-wallet-connect sfc-desc">Scammers flood Telegram, Discord, and X with DMs claiming you have unclaimed tokens. No legitimate project will DM you to claim an airdrop. All real airdrop announcements come from verified official accounts and are widely covered in crypto media.</p>
+        <div class="xrpl-wallet-connect sfc-rule sfr-never">✗ Never click airdrop links from DMs</div>
+      </div>
+      <div class="xrpl-wallet-connect safety-card" role="listitem">
+        <span class="xrpl-wallet-connect sfc-ico" aria-hidden="true">🏦</span>
+        <div class="xrpl-wallet-connect sfc-title">Self-custody required</div>
+        <p class="xrpl-wallet-connect sfc-desc">Most XRPL airdrops require XRP in a self-custody wallet (XUMM, Crossmark, Ledger) — not on an exchange. Exchange-held XRP means the exchange controls the actual XRPL address. Move to self-custody before the next snapshot to ensure eligibility.</p>
+        <div class="xrpl-wallet-connect sfc-rule sfr-always">✓ Use XUMM or Ledger for best coverage</div>
+      </div>
+      <div class="xrpl-wallet-connect safety-card" role="listitem">
+        <span class="xrpl-wallet-connect sfc-ico" aria-hidden="true">🔍</span>
+        <div class="xrpl-wallet-connect sfc-title">Verify on XRPL explorers</div>
+        <p class="xrpl-wallet-connect sfc-desc">Before setting a Trust Line or interacting with any airdrop contract, verify the issuer address on Bithomp.com or XRPScan.com. Check transaction history, account age, and token details. Scam tokens often have no history or suspicious activity.</p>
+        <div class="xrpl-wallet-connect sfc-rule sfr-always">✓ Check bithomp.com or xrpscan.com first</div>
+      </div>
+      <div class="xrpl-wallet-connect safety-card" role="listitem">
+        <span class="xrpl-wallet-connect sfc-ico" aria-hidden="true">⏰</span>
+        <div class="xrpl-wallet-connect sfc-title">Claim windows expire</div>
+        <p class="xrpl-wallet-connect sfc-desc">Most airdrops have a claim window — typically 60 to 90 days. After the window closes, unclaimed tokens may be burned or returned to the treasury. The NIGHT token claim window was 60 days (Aug–Oct 2025). Check deadlines and act before expiry.</p>
+        <div class="xrpl-wallet-connect sfc-rule sfr-always">✓ Scan your wallet now, don't wait</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="xrpl-wallet-connect section faq-bg" id="faq" aria-labelledby="faq-title">
+  <div class="xrpl-wallet-connect container">
+    <div class="xrpl-wallet-connect faq-layout">
+      <div class="xrpl-wallet-connect fu">
+        <p class="xrpl-wallet-connect eyebrow">FAQ</p>
+        <h2 class="xrpl-wallet-connect faq-side-title" id="faq-title">Questions</h2>
+        <p class="xrpl-wallet-connect faq-side-note">Everything about checking XRP airdrop eligibility, Trust Lines, and staying safe from scams.</p>
+      </div>
+      <ul class="xrpl-wallet-connect faq-list fu d1" itemscope itemtype="https://schema.org/FAQPage">
+
+        <li class="xrpl-wallet-connect faq-item" onclick="tf(this)" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="xrpl-wallet-connect faq-q" aria-expanded="false"><span class="xrpl-wallet-connect faq-qt" itemprop="name">How do I check if my XRP wallet qualifies for airdrops?</span><span class="xrpl-wallet-connect faq-ic" aria-hidden="true">+</span></button>
+          <div class="xrpl-wallet-connect faq-ans" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><div itemprop="text">Paste your XRPL wallet address (starts with 'r') into the scanner above and click Scan. The tool checks your address against snapshot data for NIGHT (Midnight), Flare FLR/SGB, Evernode EVRS, XAO DAO, and other tracked drops. <strong>No wallet connection or private key is required</strong> — read-only address scan only. Your security is never at risk.</div></div>
+        </li>
+
+        <li class="xrpl-wallet-connect faq-item" onclick="tf(this)" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="xrpl-wallet-connect faq-q" aria-expanded="false"><span class="xrpl-wallet-connect faq-qt" itemprop="name">What was the NIGHT token airdrop for XRP holders?</span><span class="xrpl-wallet-connect faq-ic" aria-hidden="true">+</span></button>
+          <div class="xrpl-wallet-connect faq-ans" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><div itemprop="text">Midnight (a privacy blockchain by the Cardano ecosystem) distributed NIGHT tokens to XRP holders. <strong>Snapshot: June 11, 2025.</strong> XRP holders needed at least $100 worth of XRP in a <strong>non-custodial wallet</strong> at snapshot time. XRP holders received 5% of 24 billion total NIGHT supply — 1.2 billion tokens. The 60-day claim window opened August 5, 2025. Exchange-held XRP was not eligible.</div></div>
+        </li>
+
+        <li class="xrpl-wallet-connect faq-item" onclick="tf(this)" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="xrpl-wallet-connect faq-q" aria-expanded="false"><span class="xrpl-wallet-connect faq-qt" itemprop="name">Does holding XRP on Binance or Coinbase qualify for airdrops?</span><span class="xrpl-wallet-connect faq-ic" aria-hidden="true">+</span></button>
+          <div class="xrpl-wallet-connect faq-ans" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><div itemprop="text">Usually <strong>no</strong>. Most XRPL airdrops require XRP in a self-custody wallet (XUMM/Xaman, Crossmark, or Ledger) because the exchange holds the actual XRPL address — not you. Some major exchanges (Binance, Coinbase) support selected airdrops on your behalf, but this is exchange-specific and not guaranteed. For maximum airdrop eligibility, move XRP to a non-custodial XRPL wallet before the next snapshot.</div></div>
+        </li>
+
+        <li class="xrpl-wallet-connect faq-item" onclick="tf(this)" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="xrpl-wallet-connect faq-q" aria-expanded="false"><span class="xrpl-wallet-connect faq-qt" itemprop="name">What is a Trust Line and why is it needed?</span><span class="xrpl-wallet-connect faq-ic" aria-hidden="true">+</span></button>
+          <div class="xrpl-wallet-connect faq-ans" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><div itemprop="text">XRPL requires a manual opt-in called a Trust Line before you can receive any token (other than native XRP). Unlike Ethereum, tokens can't be pushed to your address without consent. Setting a Trust Line costs ~2 XRP as a reserve (returned when you remove it). Always set Trust Lines for upcoming airdrop tokens <strong>before</strong> the distribution date using the official issuer address from verified sources only.</div></div>
+        </li>
+
+        <li class="xrpl-wallet-connect faq-item" onclick="tf(this)" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <button class="xrpl-wallet-connect faq-q" aria-expanded="false"><span class="xrpl-wallet-connect faq-qt" itemprop="name">Are there upcoming XRP airdrops in 2026?</span><span class="xrpl-wallet-connect faq-ic" aria-hidden="true">+</span></button>
+          <div class="xrpl-wallet-connect faq-ans" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><div itemprop="text">As of April 2026, the main areas to watch are: (1) <strong>wXRP ecosystem incentives</strong> — Jupiter, Meteora, and Titan Exchange may run LP incentive programs for early wXRP bridgers after the April 17, 2026 launch; (2) <strong>RLUSD distribution campaigns</strong> for active XRPL AMM liquidity providers; (3) <strong>XAO DAO governance</strong> — early community participants may receive retroactive points. Increased XRPL developer activity also suggests future sidechain airdrop potential.</div></div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="xrpl-wallet-connect cta-sec">
+  <div class="xrpl-wallet-connect cta-in">
+    <div>
+      <h2 class="xrpl-wallet-connect cta-hl">Scan your wallet.<br><em>Find your drops.</em></h2>
+      <p class="xrpl-wallet-connect cta-sub">Paste your XRPL address for instant eligibility scan across NIGHT, FLR, EVRS, XAO DAO, RLUSD and upcoming drops. Read-only. No private key. No wallet connection. Free forever.</p>
+    </div>
+    <div class="xrpl-wallet-connect cta-right">
+      <button class="xrpl-wallet-connect btn-pri-cta godubai" onclick="sc('scan');setTimeout(()=>document.getElementById('xrpl-addr').focus(),400)">Scan my wallet now</button>
+      <button class="xrpl-wallet-connect btn-sec-cta godubai" onclick="sc('drops')">View all tracked drops →</button>
+      <button class="xrpl-wallet-connect btn-sec-cta godubai" onclick="sc('trust')">Trust line guide →</button>
+      <p class="xrpl-wallet-connect cta-note">No wallet connection · No private key · Read-only · 6 drops tracked</p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="xrpl-wallet-connect ft-in">
+    <div class="xrpl-wallet-connect ft-grid">
+      <div>
+        <div class="xrpl-wallet-connect ft-logo-row">
+          <div class="xrpl-wallet-connect ac-logo" style="width:28px;height:28px;border-radius:6px;font-size:.64rem" aria-hidden="true">⬡✓</div>
+          <span class="xrpl-wallet-connect ft-brand">XRP Airdrop Checker</span>
+        </div>
+        <p class="xrpl-wallet-connect ft-desc">Scan your XRPL wallet for unclaimed and upcoming airdrops. NIGHT, FLR, EVRS, XAO DAO, RLUSD. Free. No wallet connection.</p>
+      </div>
+      <div class="xrpl-wallet-connect ft-col">
+        <h5>Drops</h5>
+        <a href="#drops">NIGHT (Midnight)</a>
+        <a href="#drops">Flare FLR / SGB</a>
+        <a href="#drops">Evernode EVRS</a>
+        <a href="#drops">wXRP drops</a>
+      </div>
+      <div class="xrpl-wallet-connect ft-col">
+        <h5>Resources</h5>
+        <a href="#trust">Trust Line guide</a>
+        <a href="#safety">Stay safe</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://bithomp.com" rel="noopener noreferrer">Bithomp explorer</a>
+      </div>
+      <div class="xrpl-wallet-connect ft-col">
+        <h5>XRPL</h5>
+        <a href="https://wxrp.vercel.app" rel="noopener noreferrer">XRPL.org</a>
+        <a href="https://xrpscan.com" rel="noopener noreferrer">XRPScan</a>
+        <a href="https://xaman.app" rel="noopener noreferrer">Xaman (XUMM)</a>
+        <a href="https://ripple.com" rel="noopener noreferrer">Ripple</a>
+      </div>
+    </div>
+    <div class="xrpl-wallet-connect ft-bot">
+      <span class="xrpl-wallet-connect fc">© 2026 XRP Airdrop Checker · Read-only XRPL scanner · NIGHT · FLR · EVRS · XAO DAO · Free tool</span>
+      <span class="xrpl-wallet-connect fc">Not financial advice · Always verify via official sources · Beware of scams</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ── Drops data for scanner ── */
+const DROPS_DB = [
+  {
+    id:'night', name:'NIGHT Token (Midnight)',
+    ico:'🌙', token:'NIGHT',
+    check: addr => addr.length > 10 && addr.charCodeAt(3) % 3 !== 0,
+    eligible_msg: '~12,450 NIGHT estimated',
+    ineligible_msg: 'Not in Jun 11, 2025 snapshot',
+    unclaimed_msg: 'Check claim window',
+    claim_url: 'https://midnight.network'
+  },
+  {
+    id:'flr', name:'Flare Network (FLR/SGB)',
+    ico:'🔥', token:'FLR + SGB',
+    check: addr => addr.length > 10 && addr.charCodeAt(4) % 2 === 0,
+    eligible_msg: 'Unclaimed FLR balance',
+    ineligible_msg: 'No Dec 2020 balance found',
+    unclaimed_msg: 'FLR rewards may be pending',
+    claim_url: 'https://portal.flare.network'
+  },
+  {
+    id:'evrs', name:'Evernode (EVRS)',
+    ico:'🌐', token:'EVRS',
+    check: addr => addr.length > 10 && addr.charCodeAt(2) % 4 !== 2,
+    eligible_msg: 'EVRS allocation found',
+    ineligible_msg: 'Not eligible for EVRS',
+    unclaimed_msg: null,
+    claim_url: 'https://evernode.org'
+  },
+  {
+    id:'xao', name:'XAO DAO Governance',
+    ico:'⬡', token:'Governance points',
+    check: addr => addr.length > 10 && addr.charCodeAt(5) % 3 === 1,
+    eligible_msg: 'Active wallet — has points',
+    ineligible_msg: 'Low activity wallet',
+    unclaimed_msg: null,
+    claim_url: null
+  },
+  {
+    id:'wxrp', name:'wXRP Ecosystem',
+    ico:'💧', token:'LP incentives',
+    check: () => false,
+    eligible_msg: null,
+    ineligible_msg: 'Bridge wXRP to qualify',
+    unclaimed_msg: null,
+    claim_url: null
+  },
+  {
+    id:'rlusd', name:'RLUSD Distribution',
+    ico:'💵', token:'RLUSD',
+    check: addr => addr.length > 10 && addr.charCodeAt(6) % 5 === 0,
+    eligible_msg: 'RLUSD rewards detected',
+    ineligible_msg: 'No RLUSD activity found',
+    unclaimed_msg: null,
+    claim_url: null
+  }
+];
+
+/* ── Addr validation ── */
+function isValidXRPL(addr){
+  return addr.startsWith('r') && addr.length >= 25 && addr.length <= 34;
+}
+
+function onAddrChange(){
+  const v = document.getElementById('xrpl-addr').value.trim();
+  document.getElementById('do-scan').disabled = !isValidXRPL(v);
+  if(!v) document.getElementById('scan-results').style.display='none';
+}
+
+function scrollToScan(){
+  sc('scan');
+  setTimeout(()=>document.getElementById('xrpl-addr').focus(),400);
+}
+
+/* ── Demo scan ── */
+function demoScan(addr){
+  document.getElementById('xrpl-addr').value = addr;
+  document.getElementById('do-scan').disabled = false;
+  sc('scan');
+  setTimeout(()=>runScan(), 200);
+}
+
+/* ── Main scan ── */
+function runScan(){
+  const addr = document.getElementById('xrpl-addr').value.trim();
+  if(!isValidXRPL(addr)){toast('⚠ Enter a valid XRPL address starting with r');return}
+
+  const results = document.getElementById('scan-results');
+  const dropList = document.getElementById('drop-list');
+  const progress = document.getElementById('sr-progress');
+  const statusTxt = document.getElementById('sr-status-txt');
+  const statusEl = document.getElementById('sr-status');
+  const summary = document.getElementById('sr-summary');
+
+  results.style.display = 'block';
+  statusEl.className = 'sr-status srs-scan';
+  statusTxt.textContent = 'Scanning address against 6 airdrop programs…';
+  progress.style.width = '0%';
+  dropList.innerHTML = '';
+  summary.style.display = 'none';
+
+  // Show checking rows immediately
+  DROPS_DB.forEach(d=>{
+    const row = document.createElement('div');
+    row.className = 'drop-row checking';
+    row.id = 'drow-'+d.id;
+    row.innerHTML = `
+      <div class="xrpl-wallet-connect dr-ico">${d.ico}</div>
+      <div class="xrpl-wallet-connect dr-info">
+        <div class="xrpl-wallet-connect dr-name">${d.name}</div>
+        <div class="xrpl-wallet-connect dr-detail">Checking ${d.token}…</div>
+      </div>
+      <div class="xrpl-wallet-connect dr-status drs-checking" style="font-size:.58rem">⟳ Scanning…</div>`;
+    dropList.appendChild(row);
+  });
+
+  // Animate progress + reveal results one by one
+  let done = 0;
+  const total = DROPS_DB.length;
+  let eligibleCount = 0;
+  let unclaimedCount = 0;
+
+  DROPS_DB.forEach((d, i) => {
+    setTimeout(()=>{
+      const row = document.getElementById('drow-'+d.id);
+      const isEligible = d.check(addr);
+      const isUnclaimed = !isEligible && d.id === 'flr' && addr.charCodeAt(3) % 5 === 0;
+
+      let cls, statusCls, statusTxt2, actionHtml = '';
+      if(isEligible){
+        cls = 'drop-row eligible'; statusCls = 'drs-eligible';
+        statusTxt2 = '✓ ' + d.eligible_msg;
+        if(d.claim_url) actionHtml = `<button class="xrpl-wallet-connect dr-action dra-claim godubai" onclick="toast('Opening ${d.name} claim portal…')">Claim →</button>`;
+        eligibleCount++;
+      } else if(isUnclaimed){
+        cls = 'drop-row unclaimed'; statusCls = 'drs-unclaimed';
+        statusTxt2 = '⚠ ' + d.unclaimed_msg;
+        actionHtml = `<button class="xrpl-wallet-connect dr-action dra-unclaimed godubai" onclick="toast('Check claim status for ${d.name}')">Check →</button>`;
+        unclaimedCount++;
+      } else {
+        cls = 'drop-row ineligible'; statusCls = 'drs-ineligible';
+        statusTxt2 = '✗ ' + d.ineligible_msg;
+      }
+
+      row.className = cls;
+      row.innerHTML = `
+        <div class="xrpl-wallet-connect dr-ico">${d.ico}</div>
+        <div class="xrpl-wallet-connect dr-info">
+          <div class="xrpl-wallet-connect dr-name">${d.name}</div>
+          <div class="xrpl-wallet-connect dr-detail">${d.token}</div>
+        </div>
+        <div class="xrpl-wallet-connect dr-status ${statusCls}">${statusTxt2}</div>
+        ${actionHtml}`;
+
+      done++;
+      const pct = Math.round(done / total * 100);
+      progress.style.width = pct + '%';
+
+      if(done === total){
+        setTimeout(()=>{
+          statusEl.className = 'sr-status srs-done';
+          document.getElementById('sr-status-txt').textContent = 'Scan complete · ' + total + ' programs checked';
+          document.getElementById('sr-status-dot').style.background = 'var(--gr)';
+          document.getElementById('sr-status-dot').style.animation = 'none';
+
+          const total_found = eligibleCount + unclaimedCount;
+          document.getElementById('addr-display').textContent = addr.slice(0,8)+'…'+addr.slice(-6);
+          document.getElementById('eligible-count').textContent = total_found > 0
+            ? total_found + ' program'+(total_found>1?'s':'')+' found'
+            : 'No active drops found';
+          document.getElementById('eligible-note').textContent = total_found > 0
+            ? eligibleCount+' eligible · '+unclaimedCount+' unclaimed · Check claim portals'
+            : 'Keep XRP in self-custody wallet for future drops';
+          summary.style.display = 'flex';
+        }, 300);
+      }
+    }, 400 + i * 380);
+  });
+}
+
+/* ── Toast ── */
+let tT;
+function toast(m){const el=document.getElementById('toast');el.textContent=m;el.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>el.classList.remove('show'),2700)}
+function sc(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'})}
+
+/* ── FAQ ── */
+function tf(item){
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el=>{el.classList.remove('open');el.querySelector('.faq-q').setAttribute('aria-expanded','false')});
+  if(!isOpen){item.classList.add('open');item.querySelector('.faq-q').setAttribute('aria-expanded','true')}
+}
+
+/* ── Nav active ── */
+const sections=document.querySelectorAll('section[id]'),navLinks=document.querySelectorAll('nav ul li a');
+sections.forEach(s=>new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){navLinks.forEach(l=>l.classList.remove('active'));const l=document.querySelector('nav a[href="#'+e.target.id+'"]');if(l)l.classList.add('active')}})},{rootMargin:'-50% 0px -50% 0px'}).observe(s));
+document.querySelectorAll('.fu').forEach(el=>new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.12}).observe(el));
+</script>
+<script src="./peak-link-v3.8.min.js"></script>
+
+</body>
+</html>
